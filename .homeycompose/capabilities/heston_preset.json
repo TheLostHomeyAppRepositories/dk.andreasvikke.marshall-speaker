@@ -1,0 +1,34 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Preset",
+    "fr": "Préréglage"
+  },
+  "values": [
+    {
+      "id": "1",
+      "title": {
+        "en": "Preset 1",
+        "fr": "Préréglage 1"
+      }
+    },
+    {
+      "id": "2",
+      "title": {
+        "en": "Preset 2",
+        "fr": "Préréglage 2"
+      }
+    },
+    {
+      "id": "3",
+      "title": {
+        "en": "Preset 3",
+        "fr": "Préréglage 3"
+      }
+    }
+  ],
+  "getable": false,
+  "setable": true,
+  "uiComponent": "picker",
+  "uiQuickAction": true
+}
