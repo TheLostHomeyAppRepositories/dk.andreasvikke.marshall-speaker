@@ -95,6 +95,18 @@ class HestonAPIManager {
     return value?.zappaEqualizerValue;
   }
 
+  async getPlayerData() {
+    return this.getData('player:player/data');
+  }
+
+  async controlPlayer(control) {
+    return this.setData('player:player/control', 'activate', { control });
+  }
+
+  async pause() {
+    return this.controlPlayer('pause');
+  }
+
   async setEqualizer(mode, equalizer) {
     const path = EQ_PATHS[mode];
     if (!path) throw new Error(`Unsupported Heston sound mode: ${mode}`);
@@ -145,17 +157,24 @@ class HestonAPIManager {
   }
 
   async getState() {
-    const [source, mode] = await Promise.all([
+    const [source, mode, playerData] = await Promise.all([
       this.getSource(),
       this.getSoundMode(),
+      this.getPlayerData().catch(() => null),
     ]);
     const equalizer = await this.getEqualizer(mode);
+    const track = playerData?.trackRoles;
+    const metadata = track?.mediaData?.metaData || {};
 
     return {
       source,
       mode,
       bass: this.toCapabilityEqualizerValue(equalizer.value1 ?? 0),
       treble: this.toCapabilityEqualizerValue(equalizer.value5 ?? 0),
+      playing: playerData?.state === 'playing',
+      title: track?.title || playerData?.mediaRoles?.title || '',
+      artist: metadata.artist || '',
+      album: metadata.album || '',
     };
   }
 

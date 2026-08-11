@@ -8,6 +8,10 @@
   "capabilities": [
     "volume_set",
     "volume_mute",
+    "speaker_track",
+    "speaker_artist",
+    "speaker_album",
+    "heston_pause",
     "heston_preset",
     "heston_bass",
     "heston_treble",

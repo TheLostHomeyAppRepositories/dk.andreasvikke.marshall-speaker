@@ -289,6 +289,10 @@
       "capabilities": [
         "volume_set",
         "volume_mute",
+        "speaker_track",
+        "speaker_artist",
+        "speaker_album",
+        "heston_pause",
         "heston_preset",
         "heston_bass",
         "heston_treble",
@@ -432,6 +436,17 @@
       "getable": true,
       "setable": true,
       "uiComponent": "slider",
+      "uiQuickAction": true
+    },
+    "heston_pause": {
+      "type": "boolean",
+      "title": {
+        "en": "Pause",
+        "fr": "Pause"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
       "uiQuickAction": true
     },
     "heston_preset": {

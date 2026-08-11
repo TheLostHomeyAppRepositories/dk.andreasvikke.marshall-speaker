@@ -7,6 +7,10 @@ class MarshallHestonDevice extends Device {
   static readonly HESTON_CAPABILITIES = [
     'volume_set',
     'volume_mute',
+    'speaker_track',
+    'speaker_artist',
+    'speaker_album',
+    'heston_pause',
     'heston_preset',
     'heston_bass',
     'heston_treble',
@@ -20,6 +24,12 @@ class MarshallHestonDevice extends Device {
   deleted: boolean = false;
 
   async onInit() {
+    for (const capability of ['speaker_playing', 'speaker_prev', 'speaker_next']) {
+      if (this.hasCapability(capability)) {
+        await this.removeCapability(capability);
+      }
+    }
+
     for (const capability of MarshallHestonDevice.HESTON_CAPABILITIES) {
       if (!this.hasCapability(capability)) {
         await this.addCapability(capability);
@@ -35,6 +45,9 @@ class MarshallHestonDevice extends Device {
     });
     this.registerCapabilityListener('volume_mute', async (value) => {
       await this.castManager.setMuted(value);
+    });
+    this.registerCapabilityListener('heston_pause', async () => {
+      await this.hestonAPIManager.pause();
     });
     this.registerCapabilityListener('heston_preset', async (value) => {
       await this.hestonAPIManager.playPreset(Number.parseInt(value, 10));
@@ -105,6 +118,9 @@ class MarshallHestonDevice extends Device {
       if (typeof hestonState.treble === 'number') {
         await this.setCapabilityValue('heston_treble', hestonState.treble);
       }
+      await this.setCapabilityValue('speaker_track', hestonState.title);
+      await this.setCapabilityValue('speaker_artist', hestonState.artist);
+      await this.setCapabilityValue('speaker_album', hestonState.album);
       await this.setAvailable();
     } catch (error) {
       this.castManager.disconnect();
