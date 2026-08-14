@@ -1,0 +1,48 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Source",
+    "fr": "Source"
+  },
+  "values": [
+    {
+      "id": "rca",
+      "title": {
+        "en": "RCA",
+        "fr": "RCA"
+      }
+    },
+    {
+      "id": "bluetooth",
+      "title": {
+        "en": "Bluetooth",
+        "fr": "Bluetooth"
+      }
+    },
+    {
+      "id": "wifi",
+      "title": {
+        "en": "Wi-Fi",
+        "fr": "Wi-Fi"
+      }
+    },
+    {
+      "id": "hdmieArc",
+      "title": {
+        "en": "HDMI 1 (eARC)",
+        "fr": "HDMI 1 (eARC)"
+      }
+    },
+    {
+      "id": "hdmi",
+      "title": {
+        "en": "HDMI 2",
+        "fr": "HDMI 2"
+      }
+    }
+  ],
+  "getable": true,
+  "setable": true,
+  "uiComponent": "picker",
+  "uiQuickAction": true
+}

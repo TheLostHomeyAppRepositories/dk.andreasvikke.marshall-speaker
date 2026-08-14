@@ -1,0 +1,41 @@
+{
+  "type": "enum",
+  "title": {
+    "en": "Sound mode",
+    "fr": "Mode sonore"
+  },
+  "values": [
+    {
+      "id": "music",
+      "title": {
+        "en": "Music",
+        "fr": "Musique"
+      }
+    },
+    {
+      "id": "movie",
+      "title": {
+        "en": "Movie",
+        "fr": "Film"
+      }
+    },
+    {
+      "id": "night",
+      "title": {
+        "en": "Night",
+        "fr": "Nuit"
+      }
+    },
+    {
+      "id": "voice",
+      "title": {
+        "en": "Voice",
+        "fr": "Voix"
+      }
+    }
+  ],
+  "getable": true,
+  "setable": true,
+  "uiComponent": "picker",
+  "uiQuickAction": true
+}

@@ -280,6 +280,66 @@
   },
   "drivers": [
     {
+      "id": "marshall-heston",
+      "name": {
+        "en": "Marshall Heston",
+        "fr": "Marshall Heston"
+      },
+      "class": "speaker",
+      "capabilities": [
+        "volume_set",
+        "volume_mute",
+        "speaker_track",
+        "speaker_artist",
+        "speaker_album",
+        "heston_pause",
+        "heston_preset",
+        "heston_bass",
+        "heston_treble",
+        "heston_source",
+        "heston_sound_mode"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/marshall-speaker/assets/images/small.png",
+        "large": "/drivers/marshall-speaker/assets/images/large.png",
+        "xlarge": "/drivers/marshall-speaker/assets/images/xlarge.png"
+      },
+      "settings": [
+        {
+          "id": "address",
+          "type": "text",
+          "label": {
+            "en": "IP Address",
+            "fr": "Adresse IP"
+          },
+          "hint": {
+            "en": "The local IP address of the Heston soundbar.",
+            "fr": "L'adresse IP locale de la barre de son Heston."
+          }
+        }
+      ],
+      "discovery": "marshall_heston_mdns",
+      "pair": [
+        {
+          "id": "list_my_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_my_devices"
+          }
+        },
+        {
+          "id": "add_my_devices",
+          "template": "add_devices"
+        }
+      ]
+    },
+    {
       "id": "marshall-speaker",
       "name": {
         "en": "Marshall Speaker Wi-Fi",
@@ -364,6 +424,168 @@
     }
   ],
   "capabilities": {
+    "heston_bass": {
+      "type": "number",
+      "title": {
+        "en": "Bass",
+        "fr": "Basses"
+      },
+      "min": -6,
+      "max": 6,
+      "step": 1,
+      "getable": true,
+      "setable": true,
+      "uiComponent": "slider",
+      "uiQuickAction": true
+    },
+    "heston_pause": {
+      "type": "boolean",
+      "title": {
+        "en": "Pause",
+        "fr": "Pause"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "uiQuickAction": true
+    },
+    "heston_preset": {
+      "type": "enum",
+      "title": {
+        "en": "Preset",
+        "fr": "Préréglage"
+      },
+      "values": [
+        {
+          "id": "1",
+          "title": {
+            "en": "Preset 1",
+            "fr": "Préréglage 1"
+          }
+        },
+        {
+          "id": "2",
+          "title": {
+            "en": "Preset 2",
+            "fr": "Préréglage 2"
+          }
+        },
+        {
+          "id": "3",
+          "title": {
+            "en": "Preset 3",
+            "fr": "Préréglage 3"
+          }
+        }
+      ],
+      "getable": false,
+      "setable": true,
+      "uiComponent": "picker",
+      "uiQuickAction": true
+    },
+    "heston_sound_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Sound mode",
+        "fr": "Mode sonore"
+      },
+      "values": [
+        {
+          "id": "music",
+          "title": {
+            "en": "Music",
+            "fr": "Musique"
+          }
+        },
+        {
+          "id": "movie",
+          "title": {
+            "en": "Movie",
+            "fr": "Film"
+          }
+        },
+        {
+          "id": "night",
+          "title": {
+            "en": "Night",
+            "fr": "Nuit"
+          }
+        },
+        {
+          "id": "voice",
+          "title": {
+            "en": "Voice",
+            "fr": "Voix"
+          }
+        }
+      ],
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "uiQuickAction": true
+    },
+    "heston_source": {
+      "type": "enum",
+      "title": {
+        "en": "Source",
+        "fr": "Source"
+      },
+      "values": [
+        {
+          "id": "rca",
+          "title": {
+            "en": "RCA",
+            "fr": "RCA"
+          }
+        },
+        {
+          "id": "bluetooth",
+          "title": {
+            "en": "Bluetooth",
+            "fr": "Bluetooth"
+          }
+        },
+        {
+          "id": "wifi",
+          "title": {
+            "en": "Wi-Fi",
+            "fr": "Wi-Fi"
+          }
+        },
+        {
+          "id": "hdmieArc",
+          "title": {
+            "en": "HDMI 1 (eARC)",
+            "fr": "HDMI 1 (eARC)"
+          }
+        },
+        {
+          "id": "hdmi",
+          "title": {
+            "en": "HDMI 2",
+            "fr": "HDMI 2"
+          }
+        }
+      ],
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "uiQuickAction": true
+    },
+    "heston_treble": {
+      "type": "number",
+      "title": {
+        "en": "Treble",
+        "fr": "Aigus"
+      },
+      "min": -6,
+      "max": 6,
+      "step": 1,
+      "getable": true,
+      "setable": true,
+      "uiComponent": "slider",
+      "uiQuickAction": true
+    },
     "marshall_mode": {
       "type": "enum",
       "title": {
@@ -449,6 +671,14 @@
     }
   },
   "discovery": {
+    "marshall_heston_mdns": {
+      "type": "mdns-sd",
+      "mdns-sd": {
+        "name": "googlecast",
+        "protocol": "tcp"
+      },
+      "id": "{{id}}"
+    },
     "marshall_speaker_mdns": {
       "type": "mdns-sd",
       "mdns-sd": {
