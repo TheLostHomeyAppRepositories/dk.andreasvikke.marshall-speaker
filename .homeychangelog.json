@@ -13,5 +13,8 @@
   },
   "2.1.1": {
     "en": "Bug fix: added id 4 to capability"
+  },
+  "3.0.0": {
+    "en": "Added support for Heston 120 and 60, contribution by @mathieuChamois"
   }
 }
